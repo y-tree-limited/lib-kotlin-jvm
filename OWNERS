@@ -1,4 +1,6 @@
 approvers:
+- errd
 reviewers:
+- errd
 labels:
 - do-not-merge/hold
