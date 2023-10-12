@@ -11,4 +11,5 @@ What is included in the template:
 1. Readme file
 2. Gitignore file
 3. Workflows setup
-4. Codeowners file
+4. JFrog integration
+6. Codeowners file
