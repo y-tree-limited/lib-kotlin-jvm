@@ -1,0 +1,14 @@
+name: Build trunk pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-jvm-lib-trunk-workflow:
+    uses: y-tree-limited/github-actions/.github/workflows/build-jvm-lib-trunk.yml@v1
+    secrets: inherit
+    with:
+      workflow_telemetry_enabled: false

@@ -1,0 +1,11 @@
+name: Build PR pipeline
+
+on:
+  pull_request:
+
+jobs:
+  build-jvm-lib-pr-workflow:
+    uses: y-tree-limited/github-actions/.github/workflows/build-jvm-lib-pr.yml@v1
+    secrets: inherit
+    with:
+      workflow_telemetry_enabled: false
