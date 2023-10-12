@@ -8,6 +8,8 @@ plugins {
   id("io.spring.dependency-management") version "1.1.3"
   id("com.ytree.gradle.maven-publish") version "1.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
+  id("se.patrikerdes.use-latest-versions") version "0.2.18"
+  id("com.github.ben-manes.versions") version "0.48.0"
 
   kotlin("jvm") version "1.9.10"
   kotlin("plugin.spring") version "1.9.10"
@@ -82,4 +84,17 @@ tasks.getByName<Jar>("jar") {
 
 tasks.getByName<Jar>("bootJar") {
   enabled = false
+}
+
+tasks.withType<DependencyUpdatesTask> {
+  rejectVersionIf {
+    isNonStable(candidate.version)
+  }
+}
+
+fun isNonStable(version: String): Boolean {
+  val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
+  val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+  val isStable = stableKeyword || regex.matches(version)
+  return isStable.not()
 }
